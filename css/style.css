@@ -1,0 +1,62 @@
+body{
+    background: #f5f5f5;
+}
+.context{
+    color: #009688;
+}
+#to{
+    background-color: #eeeeee;
+    color: black;
+    height: 150px !important;
+    overflow-y: scroll;
+}
+.bil{
+    display: none;
+}
+.summa{
+    color: #616161;
+    font-size: 85px;
+}
+#asdf{
+    color: #009688;
+    font-size: 20px;
+}
+#asdfg{
+    color: #009688;
+    font-size: 20px;
+}
+.addbutton{
+    width: 70px !important;
+}
+.savebutton{
+    width: 70px !important;
+}
+#input{
+    background-color: #eeeeee;
+    color: black;
+    height: 150px !important;
+    overflow-y: scroll;
+}
+.dropdown-content{
+    position: absolute;
+    margin-top: 45px;
+}
+@media print {
+    .header{
+        display: none;
+    }
+    .form{
+        display: none;
+    }
+
+    .del-butt{
+        display: none;
+    }
+
+
+}
+.switch-button{
+    font-size: 37px;
+    height: 44px;
+    margin-top: 16px;
+}

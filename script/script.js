@@ -1,14 +1,17 @@
 $(function(){
 
-
+//ég set ég api key sem api_key og set svo api_key í linkana
     var api_key = 'AIzaSyBr3-PXAxyE2qS33xaGW8FrpmscZFTBI4k';
 
-    window.onload = function() {
+//hérna renderar hann allar glósur þegar að ég kem inná síðuna
+//og focusar hann á input þegar þú ferð á síðu
+    $(document).ready(function(){
+        $('#input').focus();
         renderText();
-    };
+    });
 
-    $('#input').focus();
 
+//Þtta er construcor sem heitir translate
     function translate(text,from,to,callback){
         var txt = encodeURI(text);
 
@@ -18,19 +21,20 @@ $(function(){
             });
     }
 
-    // Valið er frá ensku á íslensku.. og notandinn getur breytt því
+//Ég segji hér að fromLang sé enska og toLang sé íslenska - það er defult tungumál
     var fromLang = 'en';
     var toLang = 'is';
 
+//hér renderar hann glossary
     function render(){
-        console.log('rendered')
         var from = $('#input').val();
+        //
         translate(from,fromLang,toLang,function(translated){
             $('.from').val(from);
             $('.to').val(translated);
         });
     }
-
+//Þegar ýtt er á enter þá addar hann note og focusar textann og selectar hann allann
     $('#input').on('keyup',function (e){
         render();
         if(e.keyCode==13){
@@ -41,9 +45,8 @@ $(function(){
         }
     });
 
+//DELETE
     $('#render').on('click','.del-butt',function(){
-       console.log("DELETEED");
-        console.log( this.id );
         $.ajax({
             url: 'php/deleteGlossary.php',
             data: 'id=' + this.id,
@@ -66,7 +69,7 @@ $(function(){
         render();
     })
 
-    //SELECT TO
+//SELECT TO
     $.ajax({
         url: 'https://www.googleapis.com/language/translate/v2/languages?key='+api_key+'&target=en',
         data: 'languages',
@@ -88,7 +91,7 @@ $(function(){
         }
     });
 
-    //SELECT FROM
+//SELECT FROM
     $.ajax({
         url: 'https://www.googleapis.com/language/translate/v2/languages?key='+api_key+'&target=en',
         data: 'languages',
@@ -110,6 +113,7 @@ $(function(){
         }
     });
 
+//Hér bý ég til note
     $("#addToNote").on('click', function () {
         var from = $("#input").val();
         var to = $("#to").val();
@@ -126,12 +130,12 @@ $(function(){
                 console.log(to);
                 console.log("Cat: " + category);
                 console.log(json);
-                //console.log("Event Add -- Date: " + start + " - " + end);
                 renderText();
             }
         });
     });
 
+//SWAP BUTTON
     $('#swap-butt').on('click',function(e){
         e.preventDefault();
         $('#selectFrom').val(toLang);
@@ -142,17 +146,18 @@ $(function(){
         render();
     })
 
+//RENDER TEXT !!
     function renderText() {
         $.ajax({
             url: 'php/renderNotes.php',
             type: 'GET',
             success: function (data) {
-                console.log("Rendered!");
                 $("#render").html(data);
             }
         })
     }
 
+//AUTO COMPLETE!!
     $.ajax({
         url: 'php/autoComplete.php',
         type: "GET",
@@ -161,7 +166,6 @@ $(function(){
             var autoCompleteData = {};
             var list = JSON.parse(data);
             list.forEach(function(item){
-                console.log("["+item+"]");
                 autoCompleteData[item]=null;
             });
             $('#category').autocomplete({

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>translator</title>
-    <script src="https://code.jquery.com/jquery-3.1.0.js">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="materialize/css/materialize.css" rel="stylesheet">
     <script src="materialize/css/materialize.js"></script>
@@ -14,13 +13,14 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+
 <?php
 session_start();
 if(!isset($_SESSION['username'])){
 header("Location: ../login.php");
 }
 ?>
-
+<div class="header">
 <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
     <li  class="tab"><a href="/">TRANSLATE</a></li>
     <li class="tab"><a href="../calendar/index.php">CALENDAR</a></li>
@@ -28,6 +28,7 @@ header("Location: ../login.php");
     <li class="tab"><a href="#test4">LOGIN</a></li>
     <li class="tab"><a href="#test0">LOGOUT</a></li>
     <div class="indicator" style="right: 657.156px; left: 202.844px;"></div></ul>
+</div>
 <div class="form">
     <i class="large material-print"></i>
 
@@ -51,7 +52,8 @@ header("Location: ../login.php");
 
     <div class="container">
         <div class="row">
-            <input class="autocomplete center offset-s1 col s3 autocomplete-input" id="category" name="category" placeholder="Make a category" type="text"><ul class="autocomplete-content dropdown-content"></ul><ul class="autocomplete-content dropdown-content"></ul>
+            <input class="autocomplete center col s3 autocomplete-input" id="category" name="category" placeholder="Make a category" type="text">
+            <ul class="autocomplete-content dropdown-content"></ul><ul class="autocomplete-content dropdown-content"></ul>
             <button class="addbutton  offset-s1 col s3 large material-icons btn waves-effect waves-light bold center" id="addToNote" type="submit" onclick="Materialize.toast('Glossed', 1000);">save</button>
             <button class="savebutton offset-s1 col s3 large material-icons btn waves-effect waves-light bold center" id="btn" onclick="window.print();" value="Print">print</button>
         </div>
